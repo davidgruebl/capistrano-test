@@ -44,6 +44,13 @@ namespace :deploy do
     end
   end
 
+  desc "List remote files"
+  task :list_remote do
+    on roles(:web) do |host|
+      execute ('ls -l /var/www/capistrano-swag')
+    end
+  end
+
   after :publishing, :restart
 
   after :restart, :clear_cache do
